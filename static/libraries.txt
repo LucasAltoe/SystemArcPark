@@ -1,0 +1,8 @@
+pip install fastapi
+pip install uvicorn
+pip install jinja2
+pip install bcrypt
+pip install python-multipart
+pip install pillow
+pip install qrcode
+pip install pytz

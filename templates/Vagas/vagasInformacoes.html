@@ -1,0 +1,110 @@
+{% extends "baseCliente.html" %}
+
+{% block title %}Vagas{% endblock %}
+
+{% block content %}
+
+<div class="text-start">
+    <h1>{{ estacionamento.Nome }}</h1>
+    <hr class="border border-black border-2 opacity-100">
+</div>
+
+<div class="row text-center">
+    <div class="col-md-6 d-flex align-items-stretch">
+        <div class="card border-4 border-blue rounded-5 bg-light my-4">
+            <h4 class="card-header text-blue">Horário de Funcionamento</h4>
+            <div class="card-body row py-3 col-12">
+                <div class="col-md-6">
+                    <p class="fw-bold">Segunda-feira:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.SegundaInicio }} às {{ estacionamento.SegundaFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Terça-feira:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.TercaInicio }} às {{ estacionamento.TercaFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Quarta-feira:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.QuartaInicio }} às {{ estacionamento.QuartaFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Quinta-feira:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.QuintaInicio }} às {{ estacionamento.QuintaFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Sexta-feira:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.SextaInicio }} às {{ estacionamento.SextaFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Sábado:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.SabadoInicio }} às {{ estacionamento.SabadoFim }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Domingo:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ estacionamento.DomingoInicio }} às {{ estacionamento.DomingoFim }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 d-flex align-items-stretch">
+        <div class="card border-4 border-blue rounded-5 bg-light my-4">
+            <h4 class="card-header text-blue">Tabela do Momento</h4>
+            {% if tabelas %}
+            <div class="card-body row p-5 col-12">
+                <div class="col-md-6">
+                    <p class="fw-bold">Primeira hora carro:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>R$ {{ "{:.2f}".format(tabelas.PrimeiraHoraCarro).replace('.', ',') }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Fração carro:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>R$ {{ "{:.2f}".format(tabelas.FracaoCarro).replace('.', ',') }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Primeira hora moto:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>R$ {{ "{:.2f}".format(tabelas.PrimeiraHoraMoto).replace('.', ',') }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="fw-bold">Fração moto:</p>
+                </div>
+                <div class="col-md-6">
+                    <p>R$ {{ "{:.2f}".format(tabelas.FracaoMoto).replace('.', ',') }}</p>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-center align-items-center text-danger fs-5 justify-content-center p-4">Esse estacionamento
+                ainda não cadastrou uma tabela de preços.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Logins{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h1>Logins</h1>
+</div>
+
+<hr class="border border-black border-2 opacity-100">
+
+<div class="table-responsive">
+    <table class="table align-middle text-center">
+        <thead class="fs-5">
+            <tr>
+                <th scope="col" class="text-blue">ID</th>
+                <th scope="col" class="text-blue">Nome</th>
+                <th scope="col" class="text-blue">CNPJ</th>
+                <th scope="col" class="text-blue">Email</th>
+                <th scope="col" class="text-blue">CEP</th>
+                <th scope="col" class="text-blue">Endereco</th>
+                <th scope="col" class="text-blue">Senha</th>
+                <th scope="col" class="text-blue">Abertura Domingo</th>
+                <th scope="col" class="text-blue">Fechamento Domingo</th>
+                <th scope="col" class="text-blue">Abertura Segunda</th>
+                <th scope="col" class="text-blue">Fechamento Segunda</th>
+                <th scope="col" class="text-blue">Abertura Terca</th>
+                <th scope="col" class="text-blue">Fechamento Terca</th>
+                <th scope="col" class="text-blue">Abertura Quarta</th>
+                <th scope="col" class="text-blue">Fechamento Quarta</th>
+                <th scope="col" class="text-blue">Abertura Quinta</th>
+                <th scope="col" class="text-blue">Fechamento Quinta</th>
+                <th scope="col" class="text-blue">Abertura Sexta</th>
+                <th scope="col" class="text-blue">Fechamento Sexta</th>
+                <th scope="col" class="text-blue">Abertura Sabado</th>
+                <th scope="col" class="text-blue">Fechamento Sabado</th>
+                <th scope="col" class="text-blue">Numero Vagas</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            {% for l in logs %}
+            <tr>
+                <td>{{ l.IdEstacionamento }}</td>
+                <td>{{ l.Nome }}</td>
+                <td>{{ l.CNPJ }}</td>
+                <td>{{ l.Email }}</td>
+                <td>{{ l.CEP }}</td>
+                <td>{{ l.Endereco }}</td>
+                <td>{{ l.Senha }}</td>
+                <td>{{ l.DomingoInicio }}</td>
+                <td>{{ l.DomingoFim }}</td>
+                <td>{{ l.SegundaInicio }}</td>
+                <td>{{ l.SegundaFim }}</td>
+                <td>{{ l.TercaInicio }}</td>
+                <td>{{ l.TercaFim }}</td>
+                <td>{{ l.QuartaInicio }}</td>
+                <td>{{ l.QuartaFim }}</td>
+                <td>{{ l.QuintaInicio }}</td>
+                <td>{{ l.QuintaFim }}</td>
+                <td>{{ l.SextaInicio }}</td>
+                <td>{{ l.SextaFim }}</td>
+                <td>{{ l.SabadoInicio }}</td>
+                <td>{{ l.SabadoFim }}</td>
+                <td>{{ l.NumeroVagas }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans';
+}
+
+:root {
+
+    --blue: #0D48B2;
+    --gray: #D9D9D9;
+    --select: #61D7FF;
+    --green: #B6D6CC;
+}
+
+
+.bg-blue , .btn.btn-blue {
+    background-color: var(--blue) !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+.card.border-4 {
+    border: solid var(--blue);
+}
+
+.text-blue {
+    color: var(--blue) !important;
+}
+
+.bg-gray, .btn-gray {
+    background-color: var(--gray) !important;
+    border: none !important;
+}
+
+
+.bg-info, .btn-info {
+    background-color: var(--green) !important;
+    border: none !important;
+}
+
+.bg-select {
+    background-color: var(--select) !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link.active {
+    color: black !important;
+    background-color: var(--green) !important;
+}
+
+
+.bg-estacionamento {
+    background-image: url(/static/img/BgEstacionamento.png);
+}

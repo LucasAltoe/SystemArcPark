@@ -1,0 +1,45 @@
+{% extends "baseCliente.html" %}
+
+{% block title %}Vagas{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h1>Vagas</h1>
+
+    <div class="d-flex align-items-center col-md-9 my-3">
+        <div class="input-group">
+            <input type="search" id="PesquisarVagas" class="form-control form-control-borderless"
+                placeholder="Pesquise por nome do estacionamento ou localização">
+            <button type="button" class="btn btn-info">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<hr class="border border-black border-2 opacity-100">
+
+<div class="table-responsive">
+    <table class="table align-middle text-center">
+        <thead class="fs-5">
+            <tr>
+                <th scope="col" class="text-blue">Estacionamento</th>
+                <th scope="col" class="text-blue">Localização</th>
+                <th scope="col" class="text-blue">Vagas disponíveis</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            {% for estacionamento in estacionamentos %}
+            <tr>    
+                <td><a class="text-decoration-none" value="estacionamento.IdEstacionamento" href="/vagasInformacoes/{{estacionamento.IdEstacionamento}}">{{estacionamento.Nome}}</a></td>
+                <td>{{estacionamento.Endereco}} , CEP: {{estacionamento.CEP}}</td>
+                <td>{{estacionamento.VagasDisponiveis}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

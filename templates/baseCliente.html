@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/img/Site.png" type="image/png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header class="container-fluid bg-blue sticky-top d-flex align-items-center justify-content-between">
+        <nav class="navbar">
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <i class="bi bi-list fs-4"></i>
+                <span class="fs-4">Menu</span>
+            </button>
+            <div class="offcanvas offcanvas-start bg-blue text-white" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 30px;">Arc Park</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                        style="background-color: white;"></button>
+                </div>
+                <div class="offcanvas-body d-flex flex-column flex-shrink-0 p-2" style="font-size: 23px;">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li>
+                            <a href="/vagas" class="nav-link {% if active_page == 'vagas' %}active{% endif %}">
+                                <i class="bi bi-p-circle me-2"></i>
+                                Vagas
+                            </a>
+                        </li>
+
+                        <hr>
+
+                        <div class="dropdown text-start d-sm-none mx-3">
+                            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/static/perfilBase.png" class="rounded-circle img-fluid" width="60"
+                                    alt="fotoPerfil">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="/perfilCliente">Perfil</a></li>
+                                <li><a class="dropdown-item" href="/alterarSenhaCliente">Alterar Senha</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" href="/logout">Sair</a></li>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <a href="/vagas" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+            <img src="/static/logo/Logo.svg" width="430" class="img-fluid" alt="Logo">
+        </a>
+
+        <div class="dropdown text-end d-sm-block d-none">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="/static/perfilBase.png" class="rounded-circle img-fluid" width="50" alt="fotoPerfil">
+            </a>
+            <ul class="dropdown-menu text-small">
+                <li><a class="dropdown-item" href="/perfilCliente">Perfil</a></li>
+                <li><a class="dropdown-item" href="/alterarSenhaCliente">Alterar Senha</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger" href="/logout">Sair</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1 p-0">
+                <div class="d-flex flex-nowrap d-lg-block d-none">
+                    <div class="d-flex flex-column bg-blue flex-shrink-0 position-fixed"
+                        style="width: 4.5rem; height: 100vh;">
+                        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="font-size: 30px;">
+                            <li>
+                                <a href="/vagas"
+                                    class="nav-link {% if active_page == 'vagas' %}active{% endif %} py-3 border-bottom rounded-0">
+                                    <i class="bi bi-p-circle"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 my-3">
+                <!-- Conteúdo da página principal -->
+                {% block content %} {% endblock %}
+
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                {% block scripts %}{% endblock %}
+
+</body>
+
+</html>

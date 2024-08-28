@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+
+<div class="text-start">
+    <h1>Início</h1>
+    <hr class="border border-black border-2 opacity-100">
+</div>
+
+
+<div class="row text-center">
+    <div class="col-md-4">
+      <div class="card border-4 rounded-5 bg-light my-4">
+          <h4 class="card-header">Rotativo</h4>
+          <div class="card-body py-5">
+              <h3 class="card-text text-blue">{{ numero_veiculos_pendentes }}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-4">
+            <h4 class="card-header">Faturamento do Dia</h4>
+            <div class="card-body py-5">
+                <h3 class="card-text text-success">R$ {{ faturamento_dia }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-4">
+            <h4 class="card-header">Mensalistas</h4>
+            <div class="card-body py-5">
+                <h3 class="card-text text-blue">0</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row text-center">
+    <div class="col-md-4">
+      <div class="card border-4 rounded-5 bg-light my-4">
+          <h4 class="card-header">Ocupação Carros (%)</h4>
+          <div class="card-body px-3 py-4">
+              <canvas id="OcupacaoCarros" data-ocupacao="{{ razao_ocupacao_carros }}" width="400"></canvas>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-4 rounded-5 bg-light my-4">
+          <h4 class="card-header">Ocupação Total (%)</h4>
+          <div class="card-body py-4">
+              <canvas id="OcupacaoTotal" data-ocupacao="{{ ocupacao_total }}" width="400"></canvas>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-4 rounded-5 bg-light my-4">
+          <h4 class="card-header">Ocupação Motos (%)</h4>
+          <div class="card-body px-3 py-4">
+              <canvas id="OcupacaoMotos" data-ocupacao="{{ razao_ocupacao_motos }}" width="400"></canvas>
+          </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/graficosInicio.js"></script>
+
+{% endblock %}

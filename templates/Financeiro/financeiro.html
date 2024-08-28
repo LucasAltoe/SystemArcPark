@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Financeiro{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h1>Financeiro</h1>
+
+    <!-- <form id="formPesquisar" method="get" action="/financeiro" class="d-flex align-items-center my-3">
+        <div class="input-group mx-5">
+            <input type="month" class="form-control form-control-borderless" id="mesAno" name="mesAno">
+            <button type="submit" class="btn btn-info">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form> -->
+</div>
+
+
+<hr class="border border-black border-2 opacity-100">
+
+{% if error_message %}
+<p class="text-center align-items-center text-danger fs-5">{{ error_message }}</p>
+{% else %}
+
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento por Vaga é uma métrica que avalia a receita gerada pelo seu estacionamento em relação ao número de vagas dele. Ele indica o valor médio que você está ganhando por cada vaga.">
+            <h4 class="card-header">Faturamento por Vaga</h4>
+            <div class="card-body p-4">
+                <h3 class="card-text text-blue">R$ {{ faturamento_por_vaga }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento Total é uma métrica fundamental para avaliar o desempenho financeiro geral do seu estacionamento. Ele representa o valor total de receita gerado pelo seu estacionamento. (Não inclui o Faturamento Provisionado de Mensalistas).">
+          <h4 class="card-header">Faturamento Total</h4>
+          <div class="card-body p-4">
+              <h3 class="card-text text-success">R$ {{ faturamento_total }}</h3>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="A Permanência Média é uma métrica que mede o tempo médio que os veículos passam estacionados em seu estacionamento.">
+            <h4 class="card-header">Permanência Média</h4>
+            <div class="card-body p-4">
+                <h3 class="card-text text-blue">{{ permanencia_media }} min</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Ticket Médio é uma métrica que calcula o valor médio gasto pelos clientes em seu estacionamento por visita.">
+            <h4 class="card-header">Ticket Médio</h4>
+            <div class="card-body p-4">
+                <h3 class="card-text text-blue">R$ {{ ticket_medio }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento Provisionado de Mensalistas é uma métrica que estima a receita total que você espera obter dos seus clientes mensalistas em um determinado período com base em seus contratos mensais. É uma ferramenta útil para fins de planejamento financeiro e previsão de receita.">
+            <h4 class="card-header">Faturamento Provisionado de Mensalistas</h4>
+            <div class="card-body p-4">
+                <h3 class="card-text text-black">R$ {{ faturamento_mensalistas }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-6">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento Proveniente de Carros é uma métrica que representa a parte da receita total gerada especificamente pela entrada de veículos do tipo Carro no seu estacionamento rotativo. Essa métrica ajuda a entender o impacto financeiro dos carros em seu negócio.">
+            <h4 class="card-header">Faturamento Proveniente de Carros</h4>
+            <div class="card-body p-4">
+                <h3 class="card-text" style="color: #3772FF">R$ {{ faturamento_carros }}</h3>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento Proveniente de Motos é uma métrica que representa a parte da receita total gerada especificamente pela entrada de veículos do tipo Moto no seu estacionamento rotativo. Essa métrica ajuda a entender o impacto financeiro das motos em seu negócio.">
+              <h4 class="card-header">Faturamento Proveniente de Motos</h4>
+              <div class="card-body p-4">
+                  <h3 class="card-text" style="color: #a68322;">R$ {{ faturamento_motos }}</h3>
+              </div>
+          </div>
+      </div>
+</div>
+
+
+<div class="row text-center">
+    <div class="col-md-8">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Faturamento por Dia é uma métrica que apresenta a receita total gerada em seu estacionamento rotativo, segmentada por dia. Isso ajuda a identificar tendências de receita ao longo do mês, destacando os dias de maior e menor faturamento.">
+            <h4 class="card-header">Faturamento por Dia</h4>
+            <div class="card-body">
+                <canvas id="faturamentoPorDia" data-faturamento-dia="{{ faturamento_por_dia }}"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O Número de Veículos é uma métrica que representa a quantidade total de veículos (carros e motos) que utilizaram o seu estacionamento rotativo durante um período específico. Isso fornece uma visão clara da demanda pelo seu serviço.">
+            <h4 class="card-header">Número de Veículos</h4>
+            <div class="card-body">
+                <canvas id="numeroVeiculos" data-veiculos-carro="{{ numero_carros }}" data-veiculos-moto="{{ numero_motos }}"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <div class="card border-4 rounded-5 bg-light my-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="A Lotação por Hora é uma métrica que mostra a distribuição de veículos ao longo do dia no seu estacionamento rotativo. Ela ajuda a identificar os horários de pico e de menor movimento, permitindo uma melhor alocação de recursos.">
+            <h4 class="card-header">Lotação por Hora</h4>
+            <div class="card-body">
+                <canvas id="lotacaoPorHora" data-lotacao-hora="{{ lotacao_por_hora }}"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/graficosFinanceiro.js"></script>
+<script src="/static/js/tooltip.js"></script>
+
+
+{% endblock %}

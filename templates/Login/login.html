@@ -1,0 +1,65 @@
+{% extends "baseLogin.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{% if not logado: %}
+<form class="row g-3 bg-white my-4 border rounded-4 px-5 py-3 needs-validation" method="post" novalidate>
+    <div class="col-12 text-center">
+        <h2 class="text-blue">Entrar</h2>
+    </div>
+    <div class="col-12">
+        <label for="Login" class="form-label">E-mail:</label>
+        <input type="text" class="form-control bg-light" name="email" id="Email" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, para logar como ESTACIONAMENTO, informe o seu email cadastrado.
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="Senha" class="form-label">Senha:</label>
+        <input type="password" class="form-control bg-light" name="senha" id="Senha" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a sua senha.
+        </div>
+    </div>
+
+    {% if erros %}
+    <div class="col-12 text-center mt-2">
+        <p class="text-danger">{{ erros }}</p>
+    </div>
+    {% endif %}
+
+    <div class="col-12 text-center mt-4">
+        <a class="text-decoration-none" href="#">Esqueci minha senha.</a>
+    </div>
+
+    <div class="col-12 text-center my-4">
+        <a href="/inicio"><button type="submit" class="btn btn-blue px-5">Entrar</button></a>
+    </div>
+
+    <div class="col-12 text-center">
+        <p>Novo no Arc Park?</p>
+        <a class="text-decoration-none" href="/nivelAcesso">
+            <p>Cadastre-se!</p>
+        </a>
+    </div>
+</form>
+
+{% else: %}
+<div class="row g-3 bg-white my-4 border rounded-4 px-5 py-3">
+    <h3 class="text-blue text-center my-5">
+        <i class="bi bi-check-circle text-blue fs-1 mx-3"></i>
+        Você já está logado.
+    </h3>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "baseLogin.html" %}
+
+{% block title %}Cadastro - Cliente{% endblock %}
+
+{% block content %}
+
+<form class="row g-3 bg-white my-4 border rounded-4 px-5 py-3 needs-validation" method="post" novalidate>
+    <div class="col-12 text-center">
+        <h2 class="text-blue">Cliente</h2>
+    </div>
+    <div class="col-12">
+        <label for="NomeCliente" class="form-label">Nome Completo:</label>
+        <input type="text" class="form-control bg-light" name="NomeCliente" id="NomeCliente" minlength="3" maxlength="40" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe seu nome.
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="CpfCliente" class="form-label">CPF/CNPJ:</label>
+        <input type="text" class="form-control bg-light" name="CpfCliente" id="CpfCliente"
+            pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$" placeholder="000.000.000-00" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe seu CPF ou CNPJ (com pontos e traço) no formato válido (EX: 000.000.000-00).
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="EmailCliente" class="form-label">E-mail:</label>
+        <input type="email" class="form-control bg-light" name="EmailCliente" id="EmailCliente" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe seu e-mail para confirmação de cadastro.
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="ContatoCliente" class="form-label">Telefone:</label>
+        <input type="text" class="form-control bg-light" name="ContatoCliente" id="ContatoCliente"
+            pattern="(\(\d{2}\)\s?)?\d{5}-\d{4}" placeholder="(99) 99999-9999" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe seu contato no formato correto (EX: "(99) 99999-9999" ou "99999-9999").
+        </div>
+    </div>
+
+
+    <div class="col-12">
+        <label for="Senha" class="form-label">Senha:</label>
+        <input type="password" class="form-control bg-light" name="Senha" id="Senha" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a sua senha.
+        </div>
+    </div>
+
+    <div class="col-12 text-center my-4">
+        <a href="/login"><button type="submit" class="btn btn-blue px-5">Cadastrar-se</button></a>
+    </div>
+</form>
+
+
+{% endblock %}

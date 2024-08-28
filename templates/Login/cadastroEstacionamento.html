@@ -1,0 +1,293 @@
+{% extends "baseLogin.html" %}
+
+{% block title %}Cadastro - Estacionamento{% endblock %}
+
+{% block content %}
+
+<form class="needs-validation" method="post" novalidate>
+    <div class="row g-3 bg-white my-4 border rounded-4 px-5 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-blue">Estacionamento</h2>
+        </div>
+
+        <div class="col-12">
+            <label for="NomeEstacionamento" class="form-label">Nome do Estacionamento:</label>
+            <input type="text" class="form-control bg-light" name="NomeEstacionamento" id="NomeEstacionamento" minlength="3" maxlength="40" required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe o nome do seu estacionamento.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="CnpjEstacionamento" class="form-label">CNPJ:</label>
+            <input type="text" class="form-control bg-light" name="CnpjEstacionamento" id="CnpjEstacionamento"
+                pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$" placeholder="00.000.000/0000-00" required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe o CNPJ do seu estacionamento (com pontos, barra e traço) no formato válido (EX:
+                00.000.000/0000-00).
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="EmailEstacionamento" class="form-label">E-mail:</label>
+            <input type="email" class="form-control bg-light" name="EmailEstacionamento" id="EmailEstacionamento"
+                required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe seu e-mail para confirmação de cadastro.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="CepEstacionamento" class="form-label">CEP:</label>
+            <input type="text" class="form-control bg-light" name="CepEstacionamento" id="CepEstacionamento"
+                pattern="^\d{5}-\d{3}$" placeholder="00000-000" required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe o CEP do seu estacionamento no formato correto (EX: 00000-000).
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <label for="EnderecoEstacionamento" class="form-label">Endereço:</label>
+            <input type="text" class="form-control bg-light" name="EnderecoEstacionamento" id="EnderecoEstacionamento"
+                required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe o endereço do seu estacionamento.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="Senha" class="form-label">Senha:</label>
+            <input type="password" class="form-control bg-light" name="Senha" id="Senha" required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe a sua senha.
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 bg-white my-4 border rounded-4 px-5 py-3">
+        <div class="col-12 text-center">
+            <h5 class="text-blue">Horário de Funcionamento</h5>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Segunda-feira:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaSegunda">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaSegunda" name="AberturaSegunda" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura da segunda-feira.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoSegunda">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoSegunda" name="FechamentoSegunda" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento da segunda-feira.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Terça-feira:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaTerca">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaTerca" name="AberturaTerca" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura da terça-feira.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoTerca">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoTerca" name="FechamentoTerca" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento da terça-feira.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Quarta-feira:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaQuarta">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaQuarta" name="AberturaQuarta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura da quarta-feira.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoQuarta">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoQuarta" name="FechamentoQuarta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento da quarta-feira.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Quinta-feira:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaQuinta">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaQuinta" name="AberturaQuinta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura da quinta-feira.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoQuinta">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoQuinta" name="FechamentoQuinta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento da quinta-feira.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Sexta-feira:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaSexta">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaSexta" name="AberturaSexta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura da sexta-feira.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoSexta">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoSexta" name="FechamentoSexta" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento da sexta-feira.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Sábado:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaSabado">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaSabado" name="AberturaSabado" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura do sábado.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoSabado">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoSabado" name="FechamentoSabado" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento do sábado.
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-lg-4">
+                <h5>Domingo:</h5>
+            </div>
+            <div class="col-lg-4 my-1 my-sm-0">
+                <label for="AberturaDomingo">Abertura:</label>
+                <input type="time" class="form-control" id="AberturaDomingo" name="AberturaDomingo" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de abertura do domingo.
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="FechamentoDomingo">Fechamento:</label>
+                <input type="time" class="form-control" id="FechamentoDomingo" name="FechamentoDomingo" required>
+                <div class="valid-feedback">
+                    Campo informado corretamente.
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, informe o horário de fechamento do domingo.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-12 text-center mx-auto">
+            <label for="NumeroVagas" class="form-label">Número de Vagas:</label>
+            <input type="number" class="form-control" id="NumeroVagas" max="200" min="1" name="NumeroVagas" required>
+            <div class="valid-feedback">
+                Campo informado corretamente.
+            </div>
+            <div class="invalid-feedback">
+                Por favor, informe o número de vagas (máximo: 200, mínimo: 1).
+            </div>
+        </div>
+
+        <div class="col-12 text-center my-4">
+            <a href="/inicio"><button type="submit" class="btn btn-blue px-5">Cadastrar-se</button></a>
+        </div>
+    </div>
+        
+    </div>
+</form>
+
+
+{% endblock %}

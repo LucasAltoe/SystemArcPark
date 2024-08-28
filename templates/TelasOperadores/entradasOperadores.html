@@ -1,0 +1,162 @@
+{% extends "baseOperador.html" %}
+
+{% block title %}Entradas{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+    <h1 class="text-start">Entradas</h1>
+
+    <form id="entradaForm" action="/entradas" method="post" class="d-flex">
+        <div class="mb-2 mb-sm-0">
+            <select class="form-select bg-select" id="tabelaEntrada" name="tabela" style="width: 9rem;">
+                <option selected>Tabela</option>
+                {% for t in tabelas %}
+                <option value="{{t.IdTabelaPreco}}">{{t.NomeTabela}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <input type="hidden" id="tipoVeiculo" name="tipo_veiculo" value="">
+
+        <button class="btn btn-blue flex-grow-0 px-3 mx-4" onclick="setTipoVeiculo('Carro')">Carro</button>
+        <button class="btn btn-info flex-grow-0 px-3" onclick="setTipoVeiculo('Moto')">Moto</button>
+
+    </form>
+
+    <button class="btn btn-gray rounded-5 flex-grow-0 px-3"><i class="bi bi-qr-code-scan fs-3"></i></button>
+</div>
+
+<hr class="border border-black border-2 opacity-100">
+
+<div class="table-responsive">
+    <table class="table align-middle text-center">
+        <thead class="fs-5">
+            <tr>
+                <th scope="col" class="text-blue">Veículo</th>
+                <th scope="col" class="text-blue">Cliente</th>
+                <th scope="col" class="text-blue">Entrada</th>
+                <th scope="col" class="text-blue">QR Code</th>
+                <th scope="col" class="text-blue">Excluir</th>
+                <th scope="col" class="text-blue">Registrar Saída</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            {% for movimentacao in entradas %}
+            {% if not movimentacao.DataHoraSaida %}
+            <tr>
+                <td>{{ movimentacao.TipoVeiculo }}</td>
+                <td>{{ movimentacao.Cliente }}</td>
+                <td>{{ movimentacao.DataHoraEntrada }}</td>
+                <td>
+                    <a href="/qr_codes/entrada_{{ movimentacao.IdMovimentacao }}.png" target="_blank">
+                        <img src="/qr_codes/entrada_{{ movimentacao.IdMovimentacao }}.png" width="30" alt="QR Code"
+                            class="img-fluid">
+                    </a>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <form id="deleteForm_{{ movimentacao.IdMovimentacao }}" action="/excluir_movimentacao"
+                            method="post">
+                            <input type="hidden" name="id_movimentacao" value="{{ movimentacao.IdMovimentacao }}">
+                            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal_{{ movimentacao.IdMovimentacao }}">
+                                <i class="bi bi-trash3 fs-4"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="modal fade" id="confirmModal_{{ movimentacao.IdMovimentacao }}" tabindex="-1"
+                        aria-labelledby="confirmModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmModalLabel">Confirmar Exclusão</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Deseja excluir esta entrada?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="submitForm('deleteForm_{{ movimentacao.IdMovimentacao }}')">Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>                
+                <td class="d-flex justify-content-center">
+                    <form id="saidaForm" action="/saidasOperador" method="post" class="d-flex">
+                        <input type="hidden" id="id_movimentacao" name="id_movimentacao"
+                            value="{{movimentacao.IdMovimentacao}}">
+                        <button class="btn btn-blue btn-scan"><i class="bi bi-box-arrow-left fs-3"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="col-12">
+        {% if totalPaginas > 1 %}
+        <nav>
+            <ul class="pagination pagination">
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/entradasOperador?pa=1&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/entradasOperador?pa={{ paginaAtual-1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left-short"></i>
+                    </a>
+                </li>
+
+                {% for i in range(totalPaginas) %}
+                <li class="page-item">
+                    <a class="page-link {{ 'active' if (paginaAtual == i+1) }}"
+                        href="/entradasOperador?pa={{ i+1 }}&tp={{ tamanhoPagina }}">{{ i+1 }}</a>
+                </li>
+                {% endfor %}
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/entradasOperador?pa={{ paginaAtual+1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/entradasOperador?pa={{ totalPaginas }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+   </div>
+</div>
+
+
+<script>
+    function setTipoVeiculo(tipoVeiculo) {
+        // Atualizar o campo oculto com o valor do tipo de veículo selecionado
+        document.getElementById("tipoVeiculo").value = tipoVeiculo;
+    }
+</script>
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
+{% endblock %}

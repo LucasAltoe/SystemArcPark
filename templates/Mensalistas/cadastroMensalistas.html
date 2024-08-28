@@ -1,0 +1,94 @@
+{% extends "base.html" %} 
+
+{% block title %}Mensalistas - Cadastro{% endblock %}
+
+{% block content %}
+
+<div class="text-start">
+    <h1>Cadastro de Mensalistas</h1>
+    <hr class="border border-black border-2 opacity-100">
+</div>
+
+<form class="row g-3 bg-gray my-4 border rounded-4 px-5 py-3 needs-validation" method="post" novalidate>
+    <div class="col-12">
+        <label for="NomeMensalista" class="form-label">Nome:</label>
+        <input type="text" class="form-control" name="NomeMensalista" id="NomeMensalista" minlength="3" maxlength="40" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o nome do cliente.
+        </div>
+    </div>
+    <div class="col-12">
+        <label for="ContatoMensalista" class="form-label">Telefone:</label>
+        <input type="text" class="form-control" name="ContatoMensalista" id="ContatoMensalista" 
+        pattern="(\(\d{2}\)\s?)?\d{5}-\d{4}" placeholder="(99) 99999-9999" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o contato do cliente no formato correto (EX: "(99) 99999-9999" ou "99999-9999").
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="InicioContratoMensalista" class="form-label">Data de Início do Contrato:</label>
+        <input type="date" class="form-control" name="InicioContratoMensalista" id="InicioContratoMensalista" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a data de início do contrato.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="FimContratoMensalista" class="form-label">Data de Fim do Contrato:</label>
+        <input type="date" class="form-control" name="FimContratoMensalista" id="FimContratoMensalista" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a data de fim do contrato.
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="ValorMensalista" class="form-label">Valor Mensal:</label>
+        <input type="number" class="form-control" name="ValorMensalista" id="ValorMensalista" min="0" max="5000" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o valor mensal.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="PlacaMensalista" class="form-label">Placa do Veículo:</label>
+        <input type="text" class="form-control" name="PlacaMensalista" id="PlacaMensalista" required pattern="([A-Z]{3}[0-9][0-9A-Z][0-9]{2})" oninput="this.value = this.value.toUpperCase()" maxlength="7" placeholder="AAA1234 ou AAA1A23">
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a placa do veículo do cliente no formato correto e sem o hífen (AAA1234 ou AAA1A23).
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="VagasMensalista" class="form-label">Número de Vagas:</label>
+        <input type="number" class="form-control" name="VagasMensalista" id="VagasMensalista" min="1" max="3000" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o número de vagas alugadas pelo cliente.
+        </div>
+    </div>
+
+    <div class="col-12 text-center my-5">
+        <button type="submit" class="btn btn-blue">Cadastrar</button>
+        <a href="/mensalistas" class="btn btn-light px-4 mx-2 mt-3 mt-sm-0">Voltar</a>
+    </div>
+</form>
+
+
+{% endblock %}

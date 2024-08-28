@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Mensalistas{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h1>Mensalistas</h1>
+
+    <div class="d-flex align-items-center my-3">
+        <div class="input-group mx-5">
+            <input type="search" id="PesquisarMensalista" class="form-control form-control-borderless"
+                placeholder="Pesquisar mensalista">
+            <button type="button" class="btn btn-info">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <a href="/cadastroMensalistas"><button class="btn btn-info ms-2 text-nowrap" type="button">Cadastrar
+            Mensalista</button></a>
+
+</div>
+
+<hr class="border border-black border-2 opacity-100">
+
+{% if mensalistas|length == 0 %}
+<p class="text-center align-items-center text-danger fs-5">Não há mensalistas cadastrados.</p>
+{% else %}
+
+<div class="table-responsive">
+    <table class="table align-middle text-center">
+        <thead class="fs-5">
+            <tr>
+                <th scope="col" class="text-blue">Nome</th>
+                <th scope="col" class="text-blue">Telefone</th>
+                <th scope="col" class="text-blue">Vagas</th>
+                <th scope="col" class="text-blue">Token</th>
+                <th scope="col" class="text-blue">Contrato</th>
+                <th scope="col" class="text-blue">Excluir</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            {% for m in mensalistas %}
+            <tr>
+                <td>{{m.Nome}}</td>
+                <td>{{m.Contato}}</td>
+                <td>{{m.Vagas}}</td>
+                <td>
+                    <a href="/tokens_mensalistas/token_{{ m.IdMensalista }}.png" target="_blank">
+                        <i alt="QR Code Mensalista" class="bi bi-person-vcard-fill fs-3 text-success"></i>
+                    </a>
+                </td>
+                <td><i class="bi bi-filetype-pdf fs-3 text-black"></i></td>
+                <td>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <form id="deleteForm_{{ m.IdMensalista }}" action="/excluir_mensalista" method="post">
+                            <input type="hidden" name="id_mensalista" value="{{ m.IdMensalista }}">
+                            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal"
+                                data-bs-target="#confirmModal_{{ m.IdMensalista }}">
+                                <i class="bi bi-trash3 fs-4"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="modal fade" id="confirmModal_{{ m.IdMensalista }}" tabindex="-1"
+                        aria-labelledby="confirmModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmModalLabel">Confirmar Exclusão</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Deseja excluir o(a) mensalista {{m.Nome}}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="submitForm('deleteForm_{{ m.IdMensalista }}')">Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+
+    <div class="col-12">
+        {% if totalPaginas > 1 %}
+        <nav>
+            <ul class="pagination pagination">
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/mensalistas?pa=1&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/mensalistas?pa={{ paginaAtual-1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left-short"></i>
+                    </a>
+                </li>
+
+                {% for i in range(totalPaginas) %}
+                <li class="page-item">
+                    <a class="page-link {{ 'active' if (paginaAtual == i+1) }}"
+                        href="/mensalistas?pa={{ i+1 }}&tp={{ tamanhoPagina }}">{{ i+1 }}</a>
+                </li>
+                {% endfor %}
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/mensalistas?pa={{ paginaAtual+1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/mensalistas?pa={{ totalPaginas }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
+{% endblock %}

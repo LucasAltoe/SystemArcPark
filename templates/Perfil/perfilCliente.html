@@ -1,0 +1,57 @@
+{% extends "baseCliente.html" %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <h1>{{ cliente.Nome }}</h1>
+
+    <a href="/alterarPerfilCliente"><button class="btn btn-info ms-2 text-nowrap" type="button">Alterar Perfil</button></a>
+</div>
+
+
+<hr class="border border-black border-2 opacity-100">
+
+
+<div class="row border border-4 border-primary g-3 my-4 border rounded-4 px-5 py-3">
+    <div class="col-lg-5 d-flex justify-content-center align-items-center">
+        <img src="/static/perfil.png" class="rounded-circle img-fluid" style="width: 20rem;" alt="fotoPerfil">
+    </div>
+
+    <div class="col-lg-7">
+        <div class="col-12 my-3">
+            <div class="row">
+                <div class="col text-md-end">
+                    <h4 class="text-blue">CPF:</h4>
+                </div>
+                <div class="col text-md-center">
+                    <h5>{{ cliente.CPF_CNPJ }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 my-3">
+            <div class="row">
+                <div class="col text-md-end">
+                    <h4 class="text-blue">Email:</h4>
+                </div>
+                <div class="col text-md-center">
+                    <h5>{{ cliente.Email }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 my-3">
+            <div class="row">
+                <div class="col text-md-end">
+                    <h4 class="text-blue">Telefone:</h4>
+                </div>
+                <div class="col text-md-center">
+                    <h5>{{ cliente.Contato }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "baseOperador.html" %}
+
+{% block title %}Saídas{% endblock %}
+
+{% block content %}
+
+<div class="text-start">
+    <h1>Saídas</h1>
+    <hr class="border border-black border-2 opacity-100">
+</div>
+
+<div class="table-responsive">
+    <table class="table align-middle text-center">
+        <thead class="fs-5">
+            <tr>
+                <th scope="col" class="text-blue">Veículo</th>
+                <th scope="col" class="text-blue">Cliente</th>
+                <th scope="col" class="text-blue">Entrada</th>
+                <th scope="col" class="text-blue">Saída</th>
+                <th scope="col" class="text-blue">Preço</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            {% for movimentacao in saidas %}
+                <tr>
+                    <td>{{ movimentacao.TipoVeiculo }}</td>
+                    <td>{{ movimentacao.Cliente }}</td>
+                    <td>{{ movimentacao.DataHoraEntrada }}</td>
+                    <td>{{ movimentacao.DataHoraSaida }}</td>
+                    <td>R$ {{ "{:.2f}".format(movimentacao.Preco).replace('.', ',') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>        
+    </table>
+
+    <div class="col-12">
+        {% if totalPaginas > 1 %}
+        <nav>
+            <ul class="pagination pagination">
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/saidasOperador?pa=1&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == 1) }}"
+                        href="/saidasOperador?pa={{ paginaAtual-1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-left-short"></i>
+                    </a>
+                </li>
+
+                {% for i in range(totalPaginas) %}
+                <li class="page-item">
+                    <a class="page-link {{ 'active' if (paginaAtual == i+1) }}"
+                        href="/saidasOperador?pa={{ i+1 }}&tp={{ tamanhoPagina }}">{{ i+1 }}</a>
+                </li>
+                {% endfor %}
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/saidasOperador?pa={{ paginaAtual+1 }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link {{ 'disabled' if (paginaAtual == totalPaginas) }}"
+                        href="/saidasOperador?pa={{ totalPaginas }}&tp={{ tamanhoPagina }}">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+   </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "baseLogin.html" %}
+
+{% block title %}Alteração de senha concluída{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 bg-white my-4 border rounded-4 px-5 py-3">
+    <div class="col-12 text-center">
+        <h2 class="text-blue">Senha Alterada!</h2>
+    </div>
+    
+    <div class="col-12 text-center">
+        <h5>Sua senha foi alterada com sucesso. Para verificar, saia e efetue o login novamente.</h5>
+    </div>
+
+    <div class="col-12 mt-5">
+        <a href="/login" class="btn btn-success px-5 w-100">Login</a>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "baseLogin.html" %}
+
+{% block title %}Nível de Acesso{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 bg-white my-4 border rounded-4 px-5 py-3">
+    <div class="col-12 text-center">
+        <h2 class="text-blue">Como deseja se cadastrar?</h2>
+    </div>
+
+
+    <div class="col-12 mt-5">
+        <a href="/cadastroEstacionamento" class="btn btn-blue px-5 w-100">Estacionamento</a>
+    </div>
+    <div class="col-12 mb-5">
+        <a href="/cadastroCliente" class="btn btn-blue px-5 w-100">Cliente</a>
+    </div>
+</div>
+
+
+{% endblock %}

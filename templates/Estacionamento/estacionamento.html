@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Estacionamento{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+    <h1>Estacionamento</h1>
+
+    <div class="row text-center my-3">
+        <select class="form-select bg-select" id="selectTabela" name="selectTabela" style="width: 9rem;">
+            <option value="0" selected>Tabela</option>
+            {% for tabela in tabelas %}
+            <option value="{{ tabela.IdTabelaPreco }}">{{ tabela.NomeTabela }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    <a href="/cadastroTabelas"><button class="btn btn-info" type="button">Cadastrar Tabela</button></a>
+</div>
+
+<hr class="border border-black border-2 opacity-100">
+
+{% if tabelas|length == 0 %}
+<p class="text-center align-items-center text-danger fs-5">Não há uma tabela de preço cadastrada.</p>
+{% else %}
+
+{% for t in tabelas %}
+<div class="tabela-info" data-tabela="{{ t.IdTabelaPreco }}">
+    <div class="row text-center">
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Nome da Tabela</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">{{t.NomeTabela}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Primeira hora carro:</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">R$ {{ "{:.2f}".format(t.PrimeiraHoraCarro).replace('.', ',') }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Primeira hora moto:</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">R$ {{ "{:.2f}".format(t.PrimeiraHoraMoto).replace('.', ',') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Data de Cadastro</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">{{t.DataCadastro.replace('-', '/')}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Fração carro:</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">R$ {{ "{:.2f}".format(t.FracaoCarro).replace('.', ',') }} </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-4 rounded-5 bg-light my-4">
+                <h4 class="card-header">Fração moto:</h4>
+                <div class="card-body py-5">
+                    <h3 class="card-text text-blue">R$ {{ "{:.2f}".format(t.FracaoMoto).replace('.', ',') }} </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Esconde todos os elementos da tabela inicialmente
+        $('.tabela-info').hide();
+
+        // Mostra as informações da tabela selecionada quando o <select> é alterado
+        $('#selectTabela').change(function () {
+            var tabelaSelecionada = $(this).val();
+            $('.tabela-info').hide(); // Esconde todas as informações da tabela
+            $('[data-tabela="' + tabelaSelecionada + '"]').show(); // Mostra as informações da tabela selecionada
+        });
+    });
+</script>
+
+
+{% endblock %}

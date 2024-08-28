@@ -1,0 +1,70 @@
+{% extends "base.html" %} 
+
+{% block title %}Estacionamento - Tabelas{% endblock %}
+
+{% block content %}
+
+<div class="text-start">
+    <h1>Cadastro de Tabelas</h1>
+    <hr class="border border-black border-2 opacity-100">
+</div>
+
+<form class="row g-3 bg-gray my-4 border rounded-4 px-5 py-3 needs-validation" method="post" novalidate>
+    <div class="col-12">
+        <label for="NomeTabela" class="form-label">Nome da Tabela:</label>
+        <input type="text" class="form-control" name="NomeTabela" id="NomeTabela" minlength="3" maxlength="40" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o nome da tabela.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="PhCarro" class="form-label">Preço 1ª hora carro:</label>
+        <input type="number" class="form-control" name="PhCarro" id="PhCarro" min="0" max="500" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o preço da primeira hora para carro.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="FrCarro" class="form-label">Fração carro:</label>
+        <input type="number" class="form-control" name="FrCarro" id="FrCarro" min="0" max="500" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a fração para carro.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="PhMoto" class="form-label">Preço 1ª hora moto:</label>
+        <input type="number" class="form-control" name="PhMoto" id="PhMoto" min="0" max="500" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe o preço da primeira hora para moto.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="FrMoto" class="form-label">Fração moto:</label>
+        <input type="number" class="form-control" name="FrMoto" id="FrMoto" min="0" max="500" required>
+        <div class="valid-feedback">
+            Campo informado corretamente.
+        </div>
+        <div class="invalid-feedback">
+            Por favor, informe a fração para moto.
+        </div>
+    </div>
+    <div class="col-12 text-center my-5">
+        <button type="submit" class="btn btn-blue">Cadastrar</button>
+        <a href="/estacionamento" class="btn btn-light px-4 mx-2 mt-3 mt-sm-0">Voltar</a>
+    </div>
+</form>
+
+
+{% endblock %}
